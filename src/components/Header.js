@@ -8,7 +8,8 @@ const Header = (props) => {
     return(
         <div className="header">
             <h1>Here's My Title, Beeatch!</h1>
-            <SearchForm />
+            
+            <SearchForm onSubmit={props.onSubmit} loading={props.loading} />
             <Nav />
         </div>
     );
