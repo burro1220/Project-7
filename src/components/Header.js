@@ -7,8 +7,7 @@ import SearchForm from './SearchForm';
 const Header = (props) => {
     return(
         <div className="header">
-            <h1>Here's My Title, Beeatch!</h1>
-            
+            <h1>React Photo App</h1>            
             <SearchForm onSubmit={props.onSubmit} loading={props.loading} />
             <Nav />
         </div>

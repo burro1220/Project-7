@@ -15,12 +15,11 @@ export default class SearchForm extends Component {
         e.preventDefault();
         this.props.onSubmit(this.query.value);
         e.currentTarget.reset();
+       
     }
 
     render(){
-        if (this.props.loading === false) {
-            return <Redirect to='/search' />
-        }
+       
         return(
             <form className="search-form" onSubmit={this.handleSubmit}>
                 <input type="search" 
