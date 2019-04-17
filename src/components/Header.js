@@ -8,7 +8,7 @@ const Header = (props) => {
     return(
         <div className="header">
             <h1>React Photo App</h1>            
-            <SearchForm onSubmit={props.onSubmit} loading={props.loading} />
+            <SearchForm onSubmit={props.onSubmit} data={props.data} />
             <Nav />
         </div>
     );

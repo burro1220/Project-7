@@ -3,7 +3,8 @@ import axios from 'axios';
 import {
   BrowserRouter,
   Route,
-  Switch
+  Switch,
+  Redirect
 } from 'react-router-dom';
 import apiKey from './config';
 
@@ -21,7 +22,7 @@ class App extends Component {
     woods: [],
     brady: [],
     photos:[],
-    loading: true    
+    loading: true  
   }
 
   componentDidMount() {
@@ -32,6 +33,7 @@ class App extends Component {
   }
 
   performSearch = (query) => {
+    this.setState({ loading: true });
     axios.get(`https://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=${apiKey}&tags=${query}&per_page=24&format=json&nojsoncallback=1`)
       .then(response => {
         this.response = response.data.photos.photo;
@@ -39,6 +41,7 @@ class App extends Component {
           photos: this.response,
           loading: false
         });
+        
       })
       .catch(error => {
         console.log('Error fetching and parsing data', error);
@@ -84,18 +87,24 @@ class App extends Component {
   }
 
   render() {
-    console.log(this.state.photos)
+    
     return (
       <BrowserRouter>
         <div className="container">
-          <Header onSubmit={this.performSearch} loading={this.state.loading}/>
+          <Header onSubmit={this.performSearch} data={this.state.photos}/>
           <Switch >
-            <Route exact path="/" component={Home} />
+            <Route exact path="/" render= { () => {
+              if(this.state.photos.length > 0) {
+                return <Redirect to="/search" />
+              } else return <Home />
+            }} />
+            
             <Route path="/tiger" render={ () => <PhotoContainer title={"Tiger Woods"} data={this.state.woods}/> } />
             <Route path="/jordan" render={ () => <PhotoContainer title={"Michael Jordan"} data={this.state.jordan} /> } />
             <Route path="/brady" render={ () => <PhotoContainer title={"Tom Brady"} data={this.state.brady}/> } />
-            <Route path="/search" render={ () => <PhotoContainer title={"Search Results"} data={this.state.photos}/> } />
+            <Route path="/search" render={ () => <PhotoContainer title={"Search Results"} loading = {this.state.loading} data={this.state.photos}/> } />
             <Route component={Error} />
+            
           </Switch>
         </div>
       </BrowserRouter>

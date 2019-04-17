@@ -18,6 +18,7 @@ const PhotoContainer = props => {
         
         <div className="photo-container">
         <h2>{props.title}</h2>
+        <h2>{(props.loading) ? "Loading..." : ""}</h2>
         <ul>
           {photos}
         </ul>
