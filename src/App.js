@@ -88,7 +88,7 @@ class App extends Component {
   }
 
   resetPhotos = () => {
-    if (this.state.photos != []) {
+    if (this.state.photos !== []) {
       this.setState({
         photos: []
       });

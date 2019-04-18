@@ -5,10 +5,10 @@ const Nav = props => {
     return(
         <nav className="main-nav">
             <ul>
+                <li><NavLink onClick={props.reset} to="/">Home</NavLink></li>
                 <li><NavLink to="/jordan">Jordan</NavLink></li>
                 <li><NavLink to="/tiger">Woods</NavLink></li>
-                <li><NavLink to="/brady">Brady</NavLink></li>
-                <li><NavLink onClick={props.reset} to="/">Home</NavLink></li>
+                <li><NavLink to="/brady">Brady</NavLink></li>                
             </ul>
       </nav>
     );
