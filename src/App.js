@@ -12,6 +12,7 @@ import apiKey from './config';
 import Header from './components/Header';
 import Home from './components/Home';
 import PhotoContainer from './components/PhotoContainer';
+import SearchContainer from './components/SearchContainer'
 import Error from './components/Error';
 
 
@@ -96,13 +97,13 @@ class App extends Component {
             <Route exact path="/" render= { () => {
               if(this.state.photos.length > 0) {
                 return <Redirect to="/search" />
-              } else return <Home />
+              } else return <Home onSubmit={this.performSearch}/>
             }} />
             
             <Route path="/tiger" render={ () => <PhotoContainer title={"Tiger Woods"} data={this.state.woods}/> } />
             <Route path="/jordan" render={ () => <PhotoContainer title={"Michael Jordan"} data={this.state.jordan} /> } />
             <Route path="/brady" render={ () => <PhotoContainer title={"Tom Brady"} data={this.state.brady}/> } />
-            <Route path="/search" render={ () => <PhotoContainer title={"Search Results"} loading = {this.state.loading} data={this.state.photos}/> } />
+            <Route path="/search" render={ () => <SearchContainer title={"Search Results"} loading = {this.state.loading} data={this.state.photos} onSubmit={this.performSearch} /> } />
             <Route component={Error} />
             
           </Switch>

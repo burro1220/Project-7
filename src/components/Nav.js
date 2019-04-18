@@ -8,6 +8,7 @@ const Nav = props => {
                 <li><NavLink to="/jordan">Jordan</NavLink></li>
                 <li><NavLink to="/tiger">Woods</NavLink></li>
                 <li><NavLink to="/brady">Brady</NavLink></li>
+                <li><NavLink to="/">Home</NavLink></li>
             </ul>
       </nav>
     );
