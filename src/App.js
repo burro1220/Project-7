@@ -87,12 +87,20 @@ class App extends Component {
     });
   }
 
+  resetPhotos = () => {
+    if (this.state.photos != []) {
+      this.setState({
+        photos: []
+      });
+    }
+  }
+
   render() {
     
     return (
       <BrowserRouter>
         <div className="container">
-          <Header onSubmit={this.performSearch} data={this.state.photos}/>
+          <Header reset={this.resetPhotos} />
           <Switch >
             <Route exact path="/" render= { () => {
               if(this.state.photos.length > 0) {
