@@ -1,6 +1,8 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 
+
+//Navigation component
 const Nav = props => {
     return(
         <nav className="main-nav">
